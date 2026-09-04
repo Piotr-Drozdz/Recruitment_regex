@@ -75,7 +75,7 @@ be matched by the content of non capturing group. Since this non capturing group
 0 or more times in a lazy way, the whole "Mazurka" pattern can fit literally everything in a way
 that prevents backtracking.
 
-So the "Mazurka" pattern in Regex 3 is constructed to consume everything before "kota"
+So the "Mazurka" pattern in Regex 3 is constructed to fit everything before "kota"
 substring and prevent backtracking to reduce number of steps. Its efficiency depends on how
 many substring similar to "kota" appears before "kota". The more such substrings and the
 more they are similar to "kota", the bigger number of steps the engine has to perform. On the
