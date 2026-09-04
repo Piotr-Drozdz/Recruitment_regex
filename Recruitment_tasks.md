@@ -62,7 +62,7 @@ My solution is Regex 2. The regex proposed in this point is:
 ```
 > **Regex 3**: Solution for task 2 a) and b) with use of "Mazurka" pattern.
 
-Regex 3 consists of the beginning of the line "^", non capturing group `(?:k*+[^k]++)` repeated
+Regex 3 consists of the beginning of the line `^`, non capturing group `(?:k*+[^k]++)` repeated
 0 or more times in a lazy way (the so called "Mazurka" pattern), named capturing group `(?<cat_group>kota)` and `.*` operator, the two last elements are the same as in Regex 2, except of a
 endline `$` that is additionally present in Regex 2. The main difference is the "Mazurka" pattern,
 that consists of abovementioned non capturing group. `k*+` means "search for 0 or more k letters
@@ -74,17 +74,18 @@ why the empty string and string consisting only of "k" letters are the only thin
 be matched by the content of non capturing group. Since this non capturing group is repeated
 0 or more times in a lazy way, the whole "Mazurka" pattern can fit literally everything in a way
 that prevents backtracking.
+
 So the "Mazurka" pattern in Regex 3 is constructed to consume everything before "kota"
-substring and prevent backtracking to reduce number of steps. Its effectiveness depends on how
+substring and prevent backtracking to reduce number of steps. Its efficiency depends on how
 many substring similar to "kota" appears before "kota". The more such substrings and the
 more they are similar to "kota", the bigger number of steps the engine has to perform. On the
 other hand, Regex 2 works differently. There is `.*` greedy operator on the beginning, that
 takes the whole line at once, and than the engine backtracks until it will find "kota" substring.
-It’s effectiveness depends linearly on the number of characters between the beginning of "kota"
+It’s efficiency depends linearly on the number of characters between the beginning of "kota"
 substring and the end of the line. Since that number is similar in all the matched lines, the
 number of steps is similar as well (around 31 – 32). In case of the last line, Regex 2 and Regex 3
 are done in the similar number of steps (32 and 31, respectively), because there are more words
-partially similar to "kota" before "kota" itself, and thus the effectiveness of Regex 3 decreases.
+partially similar to "kota" before "kota" itself, and thus the efficiency of Regex 3 decreases.
 
 ## Task 3: Applying the "Mazurka" pattern in the logs
 
@@ -95,10 +96,10 @@ letter as the basics of the "Mazurka" pattern. It would work with the example lo
 the task, since all process names begin with "c", but it is not the general case since the process
 name can begin with any other character. The second and most intuitive way would be to use
 `\w` characters or `[[:alnum:]]` character class as a base for "Mazurka" pattern. This will work
-as expected, however, it is not the most effective solution. As it was mentioned in Task 2 c),
+as expected, however, it is not the most efficient solution. As it was mentioned in Task 2 c),
 the more substrings partially similar to the one that has to be fitted stand before this actual
-substring, and the more they are similar to this substring, the more effectiveness of Regex 3
-decreases. When one realises this, it is obvious that the most effective solutions would use the
+substring, and the more they are similar to this substring, the more efficiency of Regex 3
+decreases. When one realises this, it is obvious that the most efficient solutions would use the
 characters that occur before the fitted substring rarely. In this situation, whitespace is such
 character, thus giving the solution:
 
@@ -123,7 +124,7 @@ preventing backtracking.
 
 The other group of characters that occur rarely before the fitted substring belongs to punctation
 class (`\p{P}`). Thus one may ask: wouldn’t using of `\p{P}` character class as a basics for the
-"Mazurka" pattern be more effective? The answer is: in case of this logs yes, but not in general.
+"Mazurka" pattern be more efficient? The answer is: in case of this logs yes, but not in general.
 The simplest implementation is as follows:
 
 ```regex
@@ -142,7 +143,7 @@ Link to the solution according to the task instruction:
 Regex 5 solve task 3 in smaller number of steps than Regex 4 (109 vs 132, respectively), but it
 does not prevent backtracking since `\p{P}[\w\s]+` would fit at least part of the process name at
 some point, and after that the engine would backtrack to the closest already fitted space to begin
-fitting the `process_name`. So the final effectiveness of this solution would decrease linearly with
+fitting the `process_name`. So the final efficiency of this solution would decrease linearly with growing
 number of occurances of `\p{P}` characters before fitted string, as in calssic "Mazurka" pattern,
 but it would also decrease linearly with the number of characters between the beginning of the
 process name and the first `\p{P}` character in the process name. In order to prevent backtracking,
@@ -161,7 +162,7 @@ one may use lazy operator `\p{P}[\w\s]+?`, leading to the solution:
 
 Link to this solution:  
 • [Yet another solution of task 3][]  
-However, effectiveness of Regex 6 depends linearly on the number of characters before the beginning of the fitted substring and `\p{P}` prior to it. In this case, the number of steps is 134, which
+However, efficiency of Regex 6 depends linearly on the number of characters before the beginning of the fitted substring and `\p{P}` prior to it. In this case, the number of steps is 134, which
 is a little more than for Regex 4 (132).
 
 [Solution 1]: https://regex101.com/?regex=%28%3Fx%29%0A%5E%0A.*%0A%5C%5B%28%3F%3Cprocess_pid%3E%5Cd%2B%29%5C%5D%0A.*%0A%24&testString=%3C30%3EFeb++1+07%3A46%3A49+gn21rs01+chronyd%5B2600%5D%3A+Source+10.146.65.226+online%0A%3C30%3EFeb++1+07%3A46%3A49+gn21crs01+chronyd%5B2601%5D%3A+Source+10.146.65.226+online%0A%3C30%3EFeb++1+07%3A46%3A49+gn21c+rs01+chronyd%5B2602%5D%3A+Source+10.146.65.226+online&flags=gm&flavor=pcre2&delimiter=%2F
