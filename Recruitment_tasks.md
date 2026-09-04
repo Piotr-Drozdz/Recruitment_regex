@@ -86,7 +86,7 @@ number of steps is similar as well (around 31 – 32). In case of the last line,
 are done in the similar number of steps (32 and 31, respectively), because there are more words
 partially similar to "kota" before "kota" itself, and thus the effectiveness of Regex 3 decreases.
 
-## Task 3: Applying "Mazurka" pattern in logs
+## Task 3: Applying the "Mazurka" pattern in the logs
 
 ### General solution
 
@@ -110,7 +110,7 @@ character, thus giving the solution:
 \[(?<process_id>\d+)\]
 .*
 ```
-> **Regex 4**: Application of "Mazurka" pattern to logs.
+> **Regex 4**: Application of the "Mazurka" pattern in the logs.
 
 Link to the solution according to the task instruction:  
 • [Solution 3][]  
@@ -135,7 +135,7 @@ The simplest implementation is as follows:
 \[(?<process_pid>\d+)\]
 .*
 ```
-> **Regex 5**: Another application of "Mazurka" pattern to logs.
+> **Regex 5**: Another application of the "Mazurka" pattern in the logs.
 
 Link to the solution according to the task instruction:  
 • [Another solution of task 3][]  
@@ -157,7 +157,7 @@ one may use lazy operator `\p{P}[\w\s]+?`, leading to the solution:
 \[(?<process_pid>\d+)\]
 .*
 ```
-> **Regex 6**: Yet another application of "Mazurka" pattern to logs.
+> **Regex 6**: Yet another application of the "Mazurka" pattern in the logs.
 
 Link to this solution:  
 • [Yet another solution of task 3][]  
