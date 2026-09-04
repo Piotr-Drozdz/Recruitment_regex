@@ -20,7 +20,6 @@ In order to solve 1st task and extract PID, the following regex was used:
 .*
 $
 ```
-
 **Regex 1**: Solution for task 1.
 
 Link to the solution as mentioned in a task:
@@ -41,7 +40,6 @@ Both a) and b) parts of this task can be solved by the same regex:
 .*
 $
 ```
-
 **Regex 2**: Solution for task 2 a) and b).
 
 Links to the solutions as mentioned in the task:
@@ -60,7 +58,6 @@ My solution is Regex 2. The regex proposed in this point is:
 (?<cat_group>kota)
 .*
 ```
-
 **Regex 3**: Solution for task 2 a) and b) with use of "Mazurka" pattern.
 
 Regex 3 consists of the beginning of the line "^", non capturing group `(?:k*+[^k]++)` repeated
@@ -111,7 +108,6 @@ character, thus giving the solution:
 \[(?<process_id>\d+)\]
 .*
 ```
-
 **Regex 4**: Application of "Mazurka" pattern to logs.
 
 Link to the solution according to the task instruction:  
@@ -137,7 +133,6 @@ The simplest implementation is as follows:
 \[(?<process_pid>\d+)\]
 .*
 ```
-
 **Regex 5**: Another application of "Mazurka" pattern to logs.
 
 Link to the solution according to the task instruction:  
@@ -160,7 +155,6 @@ one may use lazy operator `\p{P}[\w\s]+?`, leading to the solution:
 \[(?<process_pid>\d+)\]
 .*
 ```
-
 **Regex 6**: Yet another application of "Mazurka" pattern to logs.
 
 Link to this solution:  
