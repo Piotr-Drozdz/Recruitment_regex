@@ -26,7 +26,7 @@ Link to the solution as mentioned in a task:
 
 • [Solution 1][]
 
-## Task 2: Understanding "Mazurka" pattern
+## Task 2: Understanding the "Mazurka" pattern
 
 ### a) and b)
 
